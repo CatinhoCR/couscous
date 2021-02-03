@@ -1,0 +1,15 @@
+.resizable {
+  overflow: hidden;
+  position: relative;
+
+  &__toggler {
+    z-index: z('navigation') + 2;
+    width: 10px;
+    height: 10px;
+    background: red;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: se-resize;
+  }
+}

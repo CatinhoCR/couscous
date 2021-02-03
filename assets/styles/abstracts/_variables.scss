@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Open+Sans:wght@300;400;700&family=Poppins:wght@300;400&family=Roboto:wght@300;400;500;700&display=swap');
+
+// Theme Site Colors TODO: Adapt accordingly
+$light-blue: #0077c8;
+$mid-blue: #054880;
+$dark-blue: #070a17;
+$cool-teal: #00465f;
+$deep-teal: #143548;
+$green: #108a4b;
+$yellow: #fbcf4e;
+$orange: #ee792b;
+$red: #e82535;
+$crimson: #c92830;
+// Layout
+$warm-white: #f7f7f7;
+$lightest-grey: #ccc;
+$light-grey: #757575;
+$dark-grey: #272726;
+$color-light-border: #e4e9ed;
+// Text Colors
+$label-grey: #020202;
+$black: #000;
+$white: #fff;
+
+// Drawer variables
+$sidebar-bg: #19222a;
+$flyout-bg: #080d11;
+
+// We use this to generate color helper classes in 'themes/_color-classes'
+$theme-colors: (
+  light-blue: $light-blue,
+  mid-blue: $mid-blue,
+  dark-blue: $dark-blue,
+  cool-teal: $cool-teal,
+  deep-teal: $deep-teal,
+  green: $green,
+  orange: $orange,
+  red: $red,
+  crimson: $crimson,
+  lightest-grey: $lightest-grey,
+  light-grey: $light-grey,
+  dark-grey: $dark-grey,
+  label-grey: $label-grey,
+  black: $black,
+  white: $white,
+  warm-white: $warm-white,
+);
+
+// Fonts TODO: Change
+$font-primary: 'Open Sans', sans-serif;
+$font-secondary: 'Lato', sans-serif;
+$font-label: 'Roboto', sans-serif;
+$font-misc: 'Poppins', sans-serif;
+
+// Weights
+$light-weight: 300;
+$normal-weight: 400;
+$medium-weight: 500;
+$bold-weight: 700;
+
+// Browser Context Sizing for unit/measurement
+$browser-context: 10px;
+$base-line-height: 1.5;
+$base-letter-spacing: 0;
+
+// Breakpoints
+$breakpoints: (
+  xs: 500px,
+  sm: 700px,
+  md: 960px,
+  lg: 1280px,
+  xl: 1600px,
+  xxl: 2400px,
+);
+
+$xs: map-get($breakpoints, xs);
+$sm: map-get($breakpoints, sm);
+$md: map-get($breakpoints, md);
+$lg: map-get($breakpoints, lg);
+$xl: map-get($breakpoints, xl);
+$xxl: map-get($breakpoints, xxl);
+
+// Z-Indexes
+$z-layers: (
+  'notice-bars': 9999,
+  'navigation': 9998,
+  'search-nav': 9997,
+  'hamburger': 9996,
+  'overlay': 9995,
+  'footer': 9994,
+  'slider-nav': 9993
+);

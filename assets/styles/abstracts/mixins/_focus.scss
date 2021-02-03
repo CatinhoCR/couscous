@@ -1,0 +1,7 @@
+@mixin focus($color: $white, $offset: 2px, $contrast: 'none') {
+  // focus states for desktop
+  &:focus {
+    outline: 1px dotted $color;
+    outline-offset: $offset;
+  }
+}

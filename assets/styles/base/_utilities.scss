@@ -1,0 +1,74 @@
+.sr-only,
+.screen-reader-text,
+.hidden {
+  @include visually-hidden;
+}
+
+.no-scroll {
+  overflow: hidden !important;
+
+  &--overlay {
+    overflow: hidden !important;
+
+    &::before {
+      content: '';
+      background: $white;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 9999;
+    }
+  }
+
+  &-force {
+    position: fixed;
+    height: 100%;
+    overflow-y: none !important;
+    overflow: hidden !important;
+
+    body {
+      height: 100%;
+      overflow-y: none !important;
+      overflow: hidden !important;
+    }
+  }
+}
+
+.font {
+  &-bold {
+    font-weight: $bold-weight !important;
+  }
+
+  &-medium {
+    font-weight: $medium-weight !important;
+  }
+
+  &-italic {
+    font-style: italic !important;
+  }
+
+  &-upper {
+    text-transform: uppercase !important;
+  }
+}
+
+// Text align
+.align {
+  &-center {
+    text-align: center !important;
+  }
+
+  &-left {
+    text-align: left !important;
+  }
+
+  &-right {
+    text-align: right !important;
+  }
+
+  &-justify {
+    text-align: justify !important;
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "semi": [2, "never"],
+    "quotes": ["warn", "single"],
+    "no-console": "warn",
+    "comma-dangle": ["warn", "always-multiline"],
+    "arrow-body-style": ["warn", "as-needed"],
+    "arrow-parens": ["warn", "as-needed"],
+    "indent": ["warn", 2],
+    "no-unused-vars": "warn",
+    "func-names": "off",
+    "no-param-reassign": "off",
+    "no-use-before-define": "off",
+    "space-before-function-paren": "off",
+    "linebreak-style": "off",
+    "vars-on-top": "off"
+  }
+}

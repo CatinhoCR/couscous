@@ -1,0 +1,39 @@
+// Display
+@mixin visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+}
+
+@mixin fade($type) {
+  @if $type== 'hide' {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s;
+  } @else if $type== 'show' {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity 1s;
+  }
+}
+
+// Z-Indexes mixins
+@function z($layer) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn 'No layer found for `#{$layer}` in $z-layers map. Property omitted.';
+  }
+  @return map-get($z-layers, $layer);
+}
+
+// TODO: This
+// SEE: https://dev.to/alemesa/10-awesome-sass-scss-mixins-5ci2#zindex
+// $elements: landing, header, modal, very-important-modal;
+
+// @mixin z-index($id) {
+//   z-index: index($elements, $id);
+// }

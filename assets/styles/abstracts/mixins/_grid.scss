@@ -1,0 +1,144 @@
+@mixin side-padding {
+  padding-left: $padding-side-mobile;
+  padding-right: $padding-side-mobile;
+
+  @include break-min($md) {
+    padding-left: $padding-side-tablet;
+    padding-right: $padding-side-tablet;
+  }
+
+  @include break-min($xl) {
+    padding-left: $padding-side-desktop;
+    padding-right: $padding-side-desktop;
+  }
+}
+
+// CSS Grid
+// mixin for site grid layout wrapper
+// TODO: Deprecated, remove from everywhere. Replace with new stuff
+$default-grid-gutter: 20px;
+@mixin grid(
+  $col: 4,
+  $col-gutter: $default-grid-gutter,
+  $row-gutter: $default-grid-gutter
+) {
+  display: grid;
+  grid-template-columns: repeat($col, 1fr);
+  gap: $row-gutter $col-gutter;
+}
+
+// SEE: https://github.com/twbs/bootstrap/blob/main/scss/mixins/_breakpoints.scss
+@function breakpoint-prefx($name, $breakpoints: $breakpoints) {
+  @return if(break-min($name, $breakpoints) == null, '', '#{$name}');
+}
+
+// Mixin to create container div css grid
+// TODO: add sizes
+@mixin container($size: xl) {
+  @include side-padding;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  @if $size == sm {
+    @include break-min($sm) {
+      max-width: $sm;
+    }
+    @include break-min($md) {
+      max-width: $sm + 100;
+    }
+  } @else if $size == md {
+    @include break-min($md) {
+      max-width: $md;
+    }
+  } @else if $size == lg {
+    @include break-min($lg) {
+      max-width: $lg;
+    }
+  } @else if $size == xl {
+    @include break-min($lg) {
+      max-width: $lg;
+    }
+
+    @include break-min($xl) {
+      max-width: $xl;
+    }
+  } @else if $size == xxl {
+    @include break-min($xxl) {
+      max-width: $xxl;
+    }
+  } @else if $size == full {
+    max-width: 3000px;
+  } @else {
+    @error 'unknown size #{$size}';
+  }
+}
+
+// Flexbox Grid Normal Row for now
+@mixin row($align: flex-start, $justify: flex-start) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: column;
+  position: relative;
+
+  @include break-min($sm) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@mixin col($bp: $sm, $size: 12, $columns: $grid-columns) {
+  position: relative;
+  flex: 0 0 auto;
+  max-width: 100%;
+  width: 100%;
+  padding: 0 rem(15);
+  margin-bottom: rem(20);
+
+  @include break-min($bp) {
+    flex-basis: 0;
+    flex-grow: 1;
+    width: percentage($size / $columns);
+  }
+}
+
+@mixin make-col($size, $bp, $columns: $grid-columns) {
+  @include break-min($bp) {
+    width: percentage($size / $columns);
+    flex-grow: 0;
+    flex-basis: auto;
+  }
+}
+
+// TODO: grid based layout
+// https://travishorn.com/responsive-grid-in-2-minutes-with-css-grid-layout-4842a41420fe
+@mixin grid-row() {
+  @include grid(1, 10px, 10px);
+  justify-content: start;
+  align-content: start;
+
+  @include break-min($sm) {
+    @include grid(2, 10px, 10px);
+  }
+
+  @include break-min($md) {
+    @include grid(3, 10px, 10px);
+  }
+
+  @include break-min($lg) {
+    @include grid(4, 20px, 20px);
+  }
+
+  @include break-min($xl) {
+    @include grid(6, 20px, 20px);
+  }
+}
+
+// Offsets
+@mixin make-col-offset($size, $bp, $columns: $grid-columns) {
+  $num: $size / $columns;
+  @include break-min($bp) {
+    margin-left: if($num == 0, 0, percentage($num));
+  }
+}

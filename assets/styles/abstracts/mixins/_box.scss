@@ -1,0 +1,5 @@
+// @include box(200px, 300px);
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}

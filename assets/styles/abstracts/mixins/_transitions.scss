@@ -1,0 +1,19 @@
+// Usage @include background-transition(#FFEE58, #e57373, true);
+@mixin background-transition($initial, $hover, $inversed: false) {
+  background: linear-gradient(90deg, $hover 0%, $hover 50%, $initial 50%, $initial 100%);
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: background-position 0.25s ease-out;
+
+  @if $inversed {
+    background-position: left bottom;
+  }
+
+  &:hover {
+    background-position: left bottom;
+    @if $inversed {
+      background-position: right bottom;
+    }
+  }
+}

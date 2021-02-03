@@ -1,0 +1,69 @@
+{
+  "name": "fe-webpack-starter",
+  "version": "1.0.0",
+  "description": "A light foundation for your next frontend project based on webpack",
+  "main": "app/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "$npm_execpath --silent run checkyarn",
+    "checkyarn": "echo \"$npm_execpath\" | grep -q \"yarn\\.js$\" || (echo '⚠️  Use yarn not npm! ⚠️ ' && echo && exit 1)",
+    "lint": "npm run lint:styles; npm run lint:scripts",
+    "lint:styles": "stylelint assets/styles",
+    "lint:scripts": "eslint app",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js --colors",
+    "start": "webpack-dev-server --open --config webpack/webpack.config.dev.js"
+  },
+  "repository": "git+https://github.com/CatinhoCR/fe-webpack-starter",
+  "keywords": [
+    "es6",
+    "javascript",
+    "scss",
+    "webpack",
+    "starterkit",
+    "frontend"
+  ],
+  "author": "Cato@castilloquesada.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CatinhoCR/fe-webpack-starter/issues"
+  },
+  "homepage": "https://github.com/CatinhoCR/fe-webpack-starter#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.11.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.1.1",
+    "core-js": "^3.6.5",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.3.0",
+    "eslint": "^7.9.0",
+    "eslint-loader": "^4.0.2",
+    "file-loader": "^6.1.0",
+    "html-loader": "^1.3.2",
+    "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.11.2",
+    "node-sass": "^4.14.1",
+    "postcss": "^8.2.1",
+    "postcss-loader": "^4.0.2",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "stylelint": "^13.7.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-webpack-plugin": "^2.1.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.4"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.3",
+    "core-js": "^3.6.5",
+    "postcss": "^8.2.1"
+  },
+  "private": true
+}

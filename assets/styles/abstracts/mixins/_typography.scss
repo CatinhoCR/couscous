@@ -1,0 +1,140 @@
+// font smoothing
+@mixin smoothing {
+  font-feature-settings: 'liga'1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Truncate lines and use ellipsis
+@mixin truncate-lines($n: 4) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* stylelint-disable value-no-vendor-prefix, property-no-unknown */
+  display: -webkit-box;
+  -webkit-line-clamp: #{$n};
+  box-orient: vertical;
+  -webkit-box-orient: vertical;
+
+  /* xstylelint-enable value-no-vendor-prefix, property-no-unknown */
+}
+
+// TODO: Remove below and refactor components
+// This requires a refactor of CSS files that use the below mixins
+// and replace with utility classes for the font styles.
+
+// Headings
+@mixin title-hero() {
+  @include smoothing();
+  font-family: $font-secondary;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.57px;
+  margin: 0;
+  text-align: center;
+
+  @include break-min($lg) {
+    font-size: 58px;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+}
+
+@mixin title-landing() {
+  @include smoothing();
+  font-family: $font-secondary;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1.09;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+
+  @include break-min($lg) {
+    font-size: 38px;
+    line-height: 1.11;
+    letter-spacing: 1px;
+  }
+}
+
+@mixin title-section() {
+  @include smoothing();
+  font-family: $font-secondary;
+  font-size: 27px;
+  line-height: 1.11;
+  letter-spacing: 1px;
+  margin: 0;
+  font-weight: 300;
+
+  @include break-min($lg) {
+    font-size: 38px;
+  }
+}
+
+@mixin title-column() {
+  @include smoothing();
+  font-family: $font-primary;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.74px;
+  margin: 0;
+  text-align: center;
+  font-weight: 300;
+
+  @include break-min($lg) {
+    font-size: 28px;
+    line-height: 1.5;
+  }
+}
+
+// Paragraph
+@mixin paragraph-section() {
+  @include smoothing();
+  font-family: $font-primary;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-align: center;
+  color: grey-text;
+}
+
+// Labels
+@mixin label-hero() {
+  @include smoothing();
+  font-family: $font-primary;
+  font-size: 11px;
+  line-height: 1.64;
+  letter-spacing: 1.74px;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include break-min($lg) {
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 1.67px;
+  }
+}
+
+@mixin sub-label() {
+  @include smoothing();
+  font-family: $font-primary;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: 0.58px;
+}
+
+// Links, Tabs
+@mixin active-text() {
+  @include smoothing();
+  font-family: $font-primary;
+  font-size: 12px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: 2px;
+  margin: 0;
+}

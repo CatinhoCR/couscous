@@ -1,0 +1,74 @@
+@mixin side-padding {
+  padding-left: $padding-side-mobile;
+  padding-right: $padding-side-mobile;
+
+  @include break-min($md) {
+    padding-left: $padding-side-tablet;
+    padding-right: $padding-side-tablet;
+  }
+
+  @include break-min($xl) {
+    padding-left: $padding-side-desktop;
+    padding-right: $padding-side-desktop;
+  }
+}
+
+// CSS Grid
+// mixin for site grid layout wrapper
+$default-grid-gutter: 20px;
+@mixin grid(
+  $col: 4,
+  $col-gutter: $default-grid-gutter,
+  $row-gutter: $default-grid-gutter
+) {
+  display: grid;
+  grid-template-columns: repeat($col, 1fr);
+  gap: $row-gutter $col-gutter;
+}
+
+// @mixin grid($width: 100%, $auto: auto) {}
+
+@mixin grid-cols($height: auto) {
+  height: $height;
+}
+
+// Common Layout Grid System
+@mixin container($size: xl) {
+  @include side-padding;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  @if $size == sm {
+    @include break-min($sm) {
+      max-width: $sm;
+    }
+    @include break-min($md) {
+      max-width: $sm + 100;
+    }
+  } @else if $size == md {
+    @include break-min($md) {
+      max-width: $md;
+    }
+  } @else if $size == lg {
+    @include break-min($lg) {
+      max-width: $lg;
+    }
+  } @else if $size == xl {
+    @include break-min($lg) {
+      max-width: $lg;
+    }
+
+    @include break-min($xl) {
+      max-width: $xl;
+    }
+  } @else if $size == xxl {
+    @include break-min($xxl) {
+      max-width: $xxl;
+    }
+  } @else if $size == full {
+    max-width: 3000px;
+  } @else {
+    @error 'unknown size #{$size}';
+  }
+}

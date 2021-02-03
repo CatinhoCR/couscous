@@ -1,0 +1,11 @@
+@mixin absolute ($top: 0, $left: 0, $width: auto, $height: auto) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+}
+
+@mixin translate ($translateX: 0, $translateY: 0) {
+  transform: translate($translateX, $translateY);
+}

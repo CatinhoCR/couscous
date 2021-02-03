@@ -1,0 +1,88 @@
+@each $key, $value in $theme-colors {
+  .text-#{$key} {
+    color: $value !important;
+  }
+
+  .bg-#{$key} {
+    background-color: $value !important;
+  }
+
+  .border-color-#{$key} {
+    border-color: $value !important;
+  }
+
+  .fill-#{$key} {
+    fill: $value !important;
+  }
+
+  .button {
+    &--#{$key} {
+      background-color: $value;
+      border-color: $value;
+
+      &:hover {
+        background-color: darken($value, 10%);
+        border-color: darken($value, 10%);
+      }
+
+      // color of focus outline
+      &:focus::before {
+        border-color: $value;
+      }
+
+      &.button {
+        &--hov {
+          &-lighten {
+            &:hover {
+              background-color: lighten($value, 10%);
+              border-color: lighten($value, 10%);
+            }
+          }
+        }
+
+        &--outline {
+          background-color: transparent;
+          color: $value;
+
+          .ui-icon {
+            path {
+              fill: $value;
+            }
+          }
+
+          &:hover {
+            border-color: $value;
+            background-color: $value;
+            color: $white;
+
+            .ui-icon {
+
+              /* stylelint-disable-next-line */
+              path {
+                fill: $white;
+              }
+            }
+          }
+
+          &-reverse {
+            background-color: $value;
+            color: $white;
+
+            &:hover {
+              background-color: transparent;
+              color: $value;
+            }
+          }
+        }
+      }
+    }
+
+    &--with-icon-#{$key} {
+      .ui-icon {
+        path {
+          fill: $value;
+        }
+      }
+    }
+  }
+}

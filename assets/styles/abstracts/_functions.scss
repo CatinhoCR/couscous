@@ -1,0 +1,39 @@
+/* Remove the unit of a length
+ * @param {Number} $number - Number to remove unit from
+ * @return {Number} - Unitless number
+ */
+@function strip-units($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+// Convert pixels to rems - Assumes $browser-context is the font-size of <html>
+@function rem($pxval, $base: $browser-context) {
+  @if not unitless($pxval) {
+    $pxval: strip-units($pxval);
+  }
+
+  @if not unitless($base) {
+    $base: strip-units($base);
+  }
+
+  @return ($pxval / $base) * 1rem;
+}
+
+// Covert px to em
+@function em($px, $base: $base-font-size) {
+  @return ($px / $base) * 1em;
+}
+
+// Get raw value
+@function get-value($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+// Covert lineheight px to unitless
+@function lh($line-height, $font-size) {
+  @return get-value($line-height / $font-size);
+}

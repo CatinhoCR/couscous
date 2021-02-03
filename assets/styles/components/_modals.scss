@@ -1,0 +1,128 @@
+.modal {
+  display: none;
+  position: fixed;
+  z-index: z('navigation') + 1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  justify-content: center;
+  align-items: center;
+
+  &--active {
+    display: flex;
+  }
+
+  &--open {
+    overflow: hidden;
+
+    body {
+      overflow: hidden;
+    }
+
+    &.touchevents {
+      position: fixed;
+
+      body {
+        position: fixed;
+      }
+    }
+
+    .modal__close-bg {
+      display: block;
+    }
+  }
+
+  &__close-bg {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: 0;
+  }
+
+  &__content {
+    text-align: center;
+    border-radius: rem(6);
+    // width: calc(100% - 40px);
+    width: rem(420);
+    min-height: rem(80);
+    min-width: rem(220);
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    position: relative;
+
+    &:focus {
+      // background-color: rgba(0, 0, 0, 1);
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: rem(20);
+    right: rem(20);
+
+    &-icon {
+      &.fxm-icon {
+        width: rem(30);
+        height: rem(30);
+        stroke: $white;
+        color: $white;
+      }
+    }
+  }
+
+  &__title {
+    text-align: left;
+    padding: rem(20) 0 0 rem(20);
+    margin-bottom: rem(10);
+    color: $white;
+  }
+
+  &__body {
+    padding: rem(40) rem(48);
+    color: $white;
+
+    &-text {
+      color: $white;
+    }
+  }
+
+  &__actions {
+    .button {
+      width: 100%;
+      margin-bottom: rem(15);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@include break-min($md) {
+  .modal {
+    &__body {
+      padding: rem(50) rem(68);
+    }
+
+    &__title {
+      margin-bottom: rem(40);
+    }
+
+    &__actions {
+      .button {
+        margin-bottom: rem(20);
+      }
+    }
+  }
+}

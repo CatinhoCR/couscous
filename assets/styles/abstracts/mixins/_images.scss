@@ -1,0 +1,19 @@
+// object-fit for images
+// @param $object-fit (optional): can be cover or contain
+@mixin object-fit(
+  $top: 0,
+  $left: 0,
+  $width: 100%,
+  $height: 100%,
+  $object-fit: cover
+) {
+  @include absolute($top, $left, $width, $height);
+  object-fit: $object-fit;
+}
+
+// @include cover-background;
+@mixin cover-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

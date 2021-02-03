@@ -1,0 +1,109 @@
+.hamburger-icon {
+  height: rem(50);
+  width: rem(50);
+
+  &__line {
+    fill: none;
+    stroke: $crimson;
+    stroke-width: 6;
+    transition: transform 1s ease, stroke-dasharray 1s cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &-first {
+      stroke-dasharray: 60 207;
+      stroke-width: 6;
+    }
+
+    &-second {
+      stroke-dasharray: 60 60;
+      stroke-width: 6;
+    }
+
+    &-third {
+      stroke-dasharray: 60 207;
+      stroke-width: 6;
+    }
+
+    &-arrow {
+      stroke-width: 6;
+      stroke-dasharray: 0 85;
+    }
+  }
+
+  // Turns the Hamburger into an X icon
+  &--open {
+    .hamburger-icon {
+      &__line {
+        &-first {
+          stroke-dasharray: 90 207;
+          stroke-dashoffset: -134;
+          stroke-width: 6;
+        }
+
+        &-second {
+          stroke-dasharray: 1 60;
+          stroke-dashoffset: -30;
+          stroke-width: 6;
+        }
+
+        &-third {
+          stroke-dasharray: 90 207;
+          stroke-dashoffset: -134;
+          stroke-width: 6;
+        }
+      }
+    }
+  }
+
+  // Arrows
+  &--arrow {
+    &-left {
+      .hamburger-icon {
+        &__line {
+          &-first {
+            stroke-dasharray: 40 207;
+            transform: translateX(-30px);
+            // stroke-width: 0;
+            // stroke-dasharray: 120 207;
+            // stroke-dashoffset: -185;
+            // stroke-width: 6;
+          }
+
+          &-second {
+            stroke-dasharray: 60 120;
+            stroke-dashoffset: 0;
+            stroke-width: 6;
+          }
+
+          &-third {
+            transform: translateX(-30px);
+            // stroke-width: 0;
+            stroke-dasharray: 40 207;
+            // stroke-dasharray: 120 207;
+            // stroke-dashoffset: -185;
+            // stroke-width: 6;
+          }
+
+          &-arrow {
+            stroke-dasharray: 85 85;
+            // stroke-width: 6;
+            // fill: $crimson;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include break-min($xs) {
+  .hamburger-icon {
+    height: rem(40);
+    width: rem(40);
+  }
+}
+
+@include break-min($sm) {
+  .hamburger-icon {
+    height: rem(50);
+    width: rem(50);
+  }
+}

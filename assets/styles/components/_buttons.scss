@@ -1,0 +1,108 @@
+.button {
+  position: relative;
+  color: $white;
+  background-color: $deep-teal;
+  border: 1px solid $deep-teal;
+  height: rem(38);
+  border-radius: rem(19);
+  padding: rem(8) rem(30);
+  text-transform: capitalize;
+  display: inline-flex;
+  font-size: rem(14);
+  line-height: 1;
+  font-weight: $bold-weight;
+  letter-spacing: 0;
+  text-decoration: none;
+  align-self: center;
+  text-align: center;
+  align-items: center;
+  white-space: nowrap;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($deep-teal, 10%);
+    border-color: darken($deep-teal, 10%);
+  }
+
+  &:focus {
+    outline: 0;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: -4px;
+      top: -4px;
+      right: -4px;
+      bottom: -4px;
+      border-radius: 27px;
+      border: 1px dotted $deep-teal;
+    }
+  }
+
+  &--disabled,
+  &[aria-disabled],
+  &[disabled] {
+    background-color: #b7b7b7;
+    border-color: #b7b7b7;
+  }
+
+  &--transparent {
+    background-color: transparent;
+    color: $white;
+    border-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  .fxm-icon {
+    text-align: center;
+    vertical-align: middle;
+    max-width: rem(22);
+    max-height: rem(22);
+
+    path {
+      fill: $white;
+    }
+
+    [class$='__opacity-none'] {
+      fill-opacity: 0;
+    }
+  }
+
+  &--lg {
+    padding: rem(13) rem(30);
+    border-radius: rem(24);
+    height: rem(48);
+  }
+
+  &--text-and-icon {
+    .ui-icon {
+      margin-left: rem(20);
+      transform: translateX(10px);
+
+      &:first-child {
+        margin-left: 0;
+        margin-right: rem(10);
+        transform: translateX(-10px);
+      }
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: $deep-teal;
+
+    &:hover {
+      border-color: $deep-teal;
+      background-color: $deep-teal;
+      color: $white;
+    }
+  }
+}

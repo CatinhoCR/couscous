@@ -1,0 +1,39 @@
+// TODO: Finish and adapt
+// SEE: https://dev.to/alemesa/10-awesome-sass-scss-mixins-5ci2#flexbox
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+// Positioning
+@mixin flex-children ($align: flex-start, $justify: flex-start, $height: 100%) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  height: $height;
+}
+
+@mixin center-children {
+  @include flex-children(center, center);
+}

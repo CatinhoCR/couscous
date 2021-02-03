@@ -1,0 +1,34 @@
+// TODO: Change class
+.nav {
+  &--top {
+    background-color: $dark-blue;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9998;
+  }
+
+  &__list {
+    list-style-type: none;
+    text-align: center;
+
+    &-item {
+      display: inline-block;
+
+      &-text {
+        display: inline-block;
+      }
+
+      &:hover {
+        overflow: visible;
+      }
+    }
+  }
+
+  &__link {
+    display: block;
+    color: $white;
+    padding: rem(18) rem(26);
+  }
+}

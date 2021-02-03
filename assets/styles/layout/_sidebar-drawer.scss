@@ -1,0 +1,209 @@
+// TODO: Temporal variables for easier changing everywhere
+$nav-txt-color: $white;
+$nav-hover-color: $light-blue;
+$docked-nav-width: rem(62);
+$expanded-nav-width: rem(340);
+
+.drawer {
+  // Button to show/hide whole nav
+  &__toggler {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    padding: rem(6);
+
+    &-icon {
+      font-size: rem(44);
+    }
+  }
+
+  // Bar thats shown/hidden based on __toggler button
+  &-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    max-width: $expanded-nav-width;
+    overflow: hidden;
+    z-index: 9998;
+    transition: max-width 0.4s ease;
+
+    // &:hover {
+    //   overflow: visible;
+    // }
+  }
+
+  // The whole nav inside the bar
+  &-nav {
+    background-color: $sidebar-bg;
+    max-width: $docked-nav-width;
+    width: 0;
+    position: relative;
+    padding: rem(80) 0 rem(40);
+    height: 100%;
+    overflow: hidden;
+    transform: translateX(-70px);
+    transition: all 0.5s linear;
+
+    &--open {
+      transform: translateX(0);
+      width: 100%;
+    }
+
+    &--open,
+    &--submenu,
+    &:hover {
+      max-width: $expanded-nav-width;
+    }
+
+    &__indicators {
+      position: absolute;
+      top: rem(20);
+      left: rem(62);
+    }
+
+    &__sub {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &__item {
+      position: relative;
+      display: block;
+      min-width: $expanded-nav-width;
+      width: 100%;
+      overflow: hidden;
+      padding: rem(16) rem(10) rem(16) 0;
+
+      &:hover {
+        overflow: visible;
+      }
+
+      &.active {
+        .drawer-nav__parent-icon,
+        .drawer-nav__parent-text {
+          color: $nav-hover-color;
+        }
+      }
+    }
+
+    // Level 1 Parent Buttons in Drawer
+    // TODO: Rename these classes for easier and better naming
+    &__parent {
+      position: relative;
+      display: table;
+      border-collapse: collapse;
+      border-spacing: 0;
+      padding: 0;
+      transform: translateZ(0) scale(1, 1);
+      transition: all 0.4s linear;
+
+      &-wrapper {
+        position: relative;
+        display: table-cell;
+        vertical-align: middle;
+        width: $docked-nav-width;
+        height: rem(36);
+      }
+
+      &-icon {
+        font-size: rem(24);
+        text-align: center;
+        color: $white;
+        transition: all 0.2s ease;
+      }
+
+      &-img {
+        max-width: rem(40);
+        border: 1px solid $white;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      &-text {
+        position: relative;
+        display: table-cell;
+        vertical-align: middle;
+        width: $expanded-nav-width - $docked-nav-width;
+        text-align: left;
+        padding-left: rem(20);
+        font-size: rem(22);
+        color: $white;
+        // border-bottom: 1px solid $color-light-border;
+        transition: all 0.2s ease;
+      }
+
+      &:hover {
+        .drawer-nav__parent {
+          &-icon,
+          &-text {
+            color: $nav-hover-color;
+          }
+
+          &-img {
+            border-color: $nav-hover-color;
+          }
+        }
+      }
+    }
+
+    &__flyout {
+      background-color: $flyout-bg;
+      position: fixed;
+      right: 0;
+      left: rem(62);
+      bottom: 0;
+      // TODO: Make 0?
+      // TODO: Either way, get current menu item opened as title of this shit fuck cunt sucker
+      top: rem(62);
+      width: rem(290);
+      height: 100%;
+      z-index: 99999;
+      padding: rem(20);
+      transform: translateX(400px);
+      transition: 0.4s transform linear;
+
+      &--open {
+        transform: translateX(0);
+        transition: 0.4s transform linear;
+      }
+
+      &--sub-active {
+        // left: 0;
+        // top: 0;
+        transform: translateY(-62px);
+        padding: 0 rem(20);
+      }
+
+      &-item {
+        padding: rem(18) 0;
+      }
+
+      &-link {
+        color: $white;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &__third {
+    &-level {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: rem(62);
+      left: rem(62);
+      padding: rem(20);
+      z-index: 999999;
+      background-color: $cool-teal;
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+
+      &.active {
+        transform: translateX(0);
+      }
+    }
+  }
+}

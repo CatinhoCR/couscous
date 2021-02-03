@@ -1,0 +1,42 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.screen-reader-text {
+  @include visually-hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend .heading;
+}
+
+a,
+p,
+li,
+span {
+  @extend .text;
+}
+
+label {
+  @extend .label;
+}
+
+a {
+  color: $mid-blue;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: $light-blue;
+  }
+}
+
+a,
+button,
+.button {
+  cursor: pointer;
+}
