@@ -13,7 +13,7 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js --colors",
     "start": "webpack-dev-server --open --config webpack/webpack.config.dev.js"
   },
-  "repository": "git+https://github.com/CatinhoCR/fe-webpack-starter",
+  "repository": "git+https://github.com/CatinhoCR/couscous",
   "keywords": [
     "es6",
     "javascript",
@@ -25,13 +25,16 @@
   "author": "Cato@castilloquesada.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CatinhoCR/fe-webpack-starter/issues"
+    "url": "https://github.com/CatinhoCR/couscous/issues"
   },
-  "homepage": "https://github.com/CatinhoCR/fe-webpack-starter#readme",
+  "homepage": "https://github.com/CatinhoCR/couscous#readme",
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/core": "7.3.4",
+    "@babel/plugin-proposal-class-properties": "7.3.4",
+    "@babel/plugin-proposal-decorators": "7.3.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.3.4",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.3.4",
     "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.11.5",
     "babel-eslint": "^10.1.0",
@@ -59,11 +62,6 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.4"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.4.3",
-    "core-js": "^3.6.5",
-    "postcss": "^8.2.1"
   },
   "private": true
 }

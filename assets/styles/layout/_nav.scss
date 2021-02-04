@@ -1,12 +1,38 @@
 // TODO: Change class
 .nav {
   &--top {
-    background-color: $dark-blue;
+    background-color: $flyout-bg;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 9998;
+    height: $nav-height-desktop;
+    overflow: hidden;
+  }
+
+  &__bar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 $padding-side-desktop;
+  }
+
+  &__brand {
+    &-link {
+      text-transform: uppercase;
+      color: lighten($green, 10);
+
+      &:hover {
+        color: $green;
+      }
+    }
+  }
+
+  &__menu {
+    margin-right: rem(80);
   }
 
   &__list {
@@ -14,10 +40,11 @@
     text-align: center;
 
     &-item {
+      margin-right: rem(28);
       display: inline-block;
 
-      &-text {
-        display: inline-block;
+      &:last-child {
+        margin-right: 0;
       }
 
       &:hover {
@@ -28,7 +55,7 @@
 
   &__link {
     display: block;
-    color: $white;
-    padding: rem(18) rem(26);
+    color: lighten($green, 10);
+    // padding: rem(18) rem(26);
   }
 }

@@ -1,6 +1,7 @@
 import Router from './_config/routing'
 import Dashboard from './dashboard/dashboard.ctrl'
 import Projects from './projects/projects.ctrl'
+import Tictactoe from './tictactoe/tictactoe.ctrl'
 
 class RoutingModule {
   constructor(container) {
@@ -22,6 +23,9 @@ class RoutingModule {
       })
       .add('projects', () => {
         Projects.init(this.viewContainer)
+      })
+      .add('tictactoe', () => {
+        Tictactoe.init(this.viewContainer)
       })
       .add('', () => {
         this.viewContainer.innerHTML = '404'

@@ -54,4 +54,7 @@ module.exports = merge(common, {
       },
     ],
   },
+  resolve: {
+    extensions: ['.js'],
+  },
 })

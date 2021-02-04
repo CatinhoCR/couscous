@@ -10,19 +10,20 @@
 @import 'base/globals';
 
 // Smaller Components
-@import 'components/icon-toggler';
+// @import 'components/icon-toggler';
 @import 'components/buttons';
-@import 'components/modals';
-@import 'components/resize';
+// @import 'components/modals';
+// @import 'components/resize';
 
 // Site General Layout Styles
 @import 'layout/content';
-// @import 'layout/nav';
-@import 'layout/drawer';
+@import 'layout/nav';
+// @import 'layout/drawer';
 // @import 'layout/sidebar-drawer';
 
 // Pages / Blocks / Views / Modules
-@import 'modules/projects';
+@import 'modules/tictactoe';
+// @import 'modules/projects';
 
 // Colors Classes
 @import 'theme/admin-theme';

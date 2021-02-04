@@ -72,3 +72,9 @@
     text-align: justify !important;
   }
 }
+
+.cf,
+.clearfix,
+.row {
+  @include clearfix();
+}

@@ -1,0 +1,43 @@
+.tictactoe {
+  &__turn {
+    margin-bottom: rem(20);
+  }
+
+  &__square {
+    background-color: $white;
+    border: 2px solid $flyout-bg;
+    float: left;
+    margin-right: -2px;
+    margin-top: -2px;
+    font-size: rem(30);
+    width: rem(80);
+    height: rem(80);
+    line-height: rem(80);
+    font-weight: 700;
+    text-align: center;
+    padding: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+/*
+.status {
+  margin-bottom: 10px;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+*/

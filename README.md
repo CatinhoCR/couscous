@@ -1,6 +1,6 @@
-# FE Starter
+# Couscous Game Hub
 
-A lightweight kickstarter for webpack based Front End projects, includes a basic routing for SPA support and some helpers methods, etc.
+A game hub centre where I'll be adding some games and random stuff as a personal fun project. Made for practice, fun and showcasing
 
 ## Features
 
@@ -16,7 +16,7 @@ A lightweight kickstarter for webpack based Front End projects, includes a basic
 yarn install
 ```
 
-If you'd rather use NPM, simply delete the `yarn.lock` file in the root folder and run `npm install`.
+If you'd rather use NPM, simply delete the `yarn.lock` file in the root (look at the `package.json` scripts and make sure to delete the preinstall checker) folder and run `npm install`.
 
 ### Start Dev Server
 
@@ -26,12 +26,15 @@ npm run start
 
 ### Build Prod Version
 
+Production build not tested and not meant to be used as this is a prototype fun personal project and havent bothered.
+
 ```bash
 npm run build
 ```
 
 ### To Do's
 
+- [ ] Finish Tic Tac Toe last details, add new games, make nav better.
 - [ ] Clean up helpers, improve and finish them off.
 - [ ] Clean styles
 - [ ] Add initial custom home
@@ -39,6 +42,6 @@ npm run build
 
 #### Notes
 
-Functional for local prototyping. Production build not really implemented nor tested, any feedback or PR's are welcome.
+Any feedback or PR's are welcome.
 
-Originally based & extended from [webpack starter](https://github.com/wbkd/webpack-starter).
+Generated from my [Starter Project](https://github.com/CatinhoCR/fe-webpack-starter)
