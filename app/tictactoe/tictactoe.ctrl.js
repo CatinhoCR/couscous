@@ -19,7 +19,7 @@ class TictactoeComponent {
     this.handleEventHandlers()
     // this.isloading true
     await this.model.load().then(
-      (res) => {
+      res => {
         if (res) {
           this.setupView(res)
         }

@@ -24,10 +24,10 @@ class TictactoeView {
   }
 
   afterRender(data) {
+    this.squares = Array.from(document.querySelectorAll('.tictactoe__square'))
     if (data) {
       this.startGame(data.player)
     }
-    // this.updateTurn({player: this.next})
   }
 
   /**
@@ -36,7 +36,6 @@ class TictactoeView {
   async startGame(player) {
     this.status = document.querySelector('.tictactoe__status')
     this.status.innerHTML = `Hey ${player}, how about starting the game?`
-    this.squares = Array.from(document.querySelectorAll('.tictactoe__square'))
     this.initDOMEvents()
   }
 
@@ -50,15 +49,10 @@ class TictactoeView {
     this.board.forEach(square => {
       square.addEventListener('click', e => {
         const btn = parseInt(e.target.dataset.index)
+        console.log('a')
         this.playEvent.trigger(btn)
       })
     })
-    // this.squares.forEach(square => {
-    //   square.addEventListener('click', e => {
-    //     const btn = parseInt(e.target.dataset.index)
-    //     this.playEvent.trigger(btn)
-    //   })
-    // })
   }
 
   updateTurn(data) {
@@ -71,25 +65,8 @@ class TictactoeView {
     this.updateTurn(data)
   }
 
-  // @todo UpdateWinner, Draw, finish game and restart game improve... tired now
-  updateWinner(data) {
-    this.status.innerHTML = `Wohoo ${data.player}! won this match!`
-    this.board[data.cell].innerHTML = data.player
-    this.updateScore(data.score)
-    this.finishGame()
-  }
-
-  updateDraw(data) {
-    console.log(data)
-  }
-
-  updateScore(score) {
-    const x = document.querySelector('.tictactoe__score-x')
-    const o = document.querySelector('.tictactoe__score-o')
-    x.innerHTML = `X: ${score.x}`
-    o.innerHTML = `O: ${score.o}`
-  }
-
+  // @todo This should send a new event to model to restart for real, etc... will do later.
+  // Last Checkpoint
   finishGame() {
     const info = document.querySelector('.tictactoe__info')
     const rematch = document.createElement('button')
@@ -98,23 +75,33 @@ class TictactoeView {
     info.appendChild(rematch)
     rematch.addEventListener('click', () => {
       // clean board, remove rematch button, keep score
+      this.board.forEach(cell => {
+        cell.innerHTML = ''
+      })
       this.startGame('X')
     })
-    // TODO:
   }
 
-  // squareTrigger(btn) {
-  // const index = btn.dataset.index
-  // if (this.squares[index] != null) {
-  //   return
-  // }
-  // this.squares[index] = btn
-  // console.log(this.squares[index])
-  // const winner = this.calculateWinner(this.squares)
-  // console.log(winner)
-  //   btn.innerHTML = this.xIsNext ? 'X' : 'O'
-  //   this.xIsNext = !this.xIsNext
-  // }
+  // @todo UpdateWinner, Draw, finish game and restart game improve... tired now
+  updateWinner(data) {
+    this.status.innerHTML = `Wohoo ${data.player}! won this match!`
+    this.board[data.cell].innerHTML = data.player
+    this.updateScore(data.score)
+    this.finishGame()
+  }
+
+  // @todo
+  updateDraw(data) {
+    console.log(data)
+  }
+
+  // @todo
+  updateScore(score) {
+    const x = document.querySelector('.tictactoe__score-x')
+    const o = document.querySelector('.tictactoe__score-o')
+    x.innerHTML = `X: ${score.x}`
+    o.innerHTML = `O: ${score.o}`
+  }
 }
 
 export { TictactoeView }

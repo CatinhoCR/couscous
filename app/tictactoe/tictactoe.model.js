@@ -58,25 +58,11 @@ class TictactoeModel {
     } else {
       this.finishCurrentGame(cell, winner, draw)
     }
-    /*
-    if (!this.finished) {
-      // TODO: view fired event updates turn so fucks status msg when won, as it still changes next turn player when theres no next turn
-      this.updateSquareEvent.trigger({ cell, player: currentPlayer })
-      this.xIsNext = !this.xIsNext
-    } else {
-      // TODO: Improve this counter for scores, too tired now
-      if (currentPlayer === 'X') {
-        this.score.x += 1
-      } else {
-        this.score.o += 1
-      }
-      this.winEvent.trigger({ cell, player: currentPlayer, score: this.score })
-    }
-    */
   }
 
   finishCurrentGame(cell, winner, draw) {
     if (draw) {
+      // @todo
       // Fire draw event and update cell
     } else {
       if (winner === 'X') {
@@ -88,6 +74,7 @@ class TictactoeModel {
     }
   }
 
+  // @todo
   switchPlayer() {
     const currentPlayer = this.xIsNext ? 'X' : 'O'
     return currentPlayer
@@ -126,36 +113,6 @@ class TictactoeModel {
 
     return draw
   }
-
-  /*
-  async GetTictactoeNav() {
-    // const MenuItems = await fetch('./../api/tictactoeNav.json', {
-    const MenuItems = await fetch('./../api/nav.json', {
-      mode: 'no-cors',
-    })
-      .then(response => response.json())
-      .then(result => result)
-      .catch(error => {
-        console.log(error) // eslint-disable-line
-      })
-    return MenuItems
-  }
-
-  async GetSubmenuItem(submenu) {
-    const SubMenuItems = await fetch('./../api/' + submenu, {
-      mode: 'no-cors',
-    })
-      .then(response => response.json())
-      .then(result => result)
-      .catch(error => {
-        console.log(error) // eslint-disable-line
-      })
-    return SubMenuItems
-  }
-  */
-
-  // TODO: Get data as user clicks for light loading in stuff
-  // async GetSelectionData() {}
 }
 
 export { TictactoeModel }
