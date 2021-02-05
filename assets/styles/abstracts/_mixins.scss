@@ -1,11 +1,13 @@
-// TODO: Clearfix, displays, etc
+@import 'mixins/box';
+@import 'mixins/breakpoints';
+@import 'mixins/flex-box';
+@import 'mixins/floats';
 @import 'mixins/focus';
 @import 'mixins/font-face';
-@import 'mixins/positioning';
-@import 'mixins/images';
-@import 'mixins/typography';
-@import 'mixins/breakpoints';
 @import 'mixins/grid';
-@import 'mixins/flex-box';
+@import 'mixins/images';
+@import 'mixins/positioning';
+@import 'mixins/transitions';
+@import 'mixins/typography';
 @import 'mixins/visibility';
-@import 'mixins/floats';
+// @import 'mixins';

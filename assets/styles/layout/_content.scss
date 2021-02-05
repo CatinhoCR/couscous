@@ -1,29 +1,55 @@
 body {
   min-height: 100vh;
+  background-color: $warm-white;
 }
 
 .page-content {
   padding-top: $nav-height-desktop + 40px;
   width: 100%;
-  max-width: rem(1080);
+  max-width: rem(1680);
   margin: 0 auto;
+}
+
+.text-block {
+  max-width: rem(600);
+  width: 100%;
 }
 
 .view {
   display: flex;
   align-items: flex-start;
   justify-content: start;
+  flex-direction: column;
 
   &__sidebar {
-    width: 30%;
+    width: 100%;
   }
 
   &__intro {
-    margin-bottom: rem(40);
+    margin-bottom: rem(20);
   }
 
   &__main {
     width: 70%;
     // padding: rem(60) 0 0 rem(200);
+  }
+}
+
+@include break-min($md) {
+  .text-block {
+    margin: 0 rem(100);
+  }
+
+  .view {
+    flex-direction: row;
+
+    &__sidebar {
+      min-width: rem(300);
+      width: 20%;
+    }
+
+    &__main {
+      width: 80%;
+    }
   }
 }

@@ -1,3 +1,17 @@
+/**
+ * SCSS Loop generates CSS classes to assign colors to elements in you project
+ * @usage Add CSS class to HTML element like so: "text-{color}"
+ * @usage Where {color} represents a mapped key-value in theme-colors
+ * @returns CSS Class for adding/overriding color values
+ * @uses Only color added to the theme-colors mapping in _variables.scss
+ * @accepts text, backgrounds, borders, SVG Path's Fills and Buttons
+ * @see Color must be added as a variable and mppped in `abstracts/variables.scss`
+ * @see variables.scss for color variables and theme-colors mapping
+ *
+ * @todo Extend as needed. Cool things to include could be:
+ * Icons, Table Elements, Form Element..
+*/
+
 @each $key, $value in $theme-colors {
   .text-#{$key} {
     color: $value !important;

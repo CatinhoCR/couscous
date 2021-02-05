@@ -1,6 +1,6 @@
 import Router from './_config/routing'
 import Dashboard from './dashboard/dashboard.ctrl'
-import Projects from './projects/projects.ctrl'
+import GamesHub from './games-hub/games-hub.ctrl'
 import Tictactoe from './tictactoe/tictactoe.ctrl'
 
 class RoutingModule {
@@ -16,16 +16,16 @@ class RoutingModule {
       root: '/',
     })
     // TODO: Login, Session Cookies, Auth Guards, Set Dynamic Token session
-    // TODO: Actual routes, dashboard, components, get/set query params and resp
+    // TODO: Actual routes, dashboard, components, get/set query params and resp\/
     router
-      .add('dashboard', () => {
+      .add('/dashboard/', () => {
         Dashboard.init(this.viewContainer)
       })
-      .add('projects', () => {
-        Projects.init(this.viewContainer)
-      })
-      .add('tictactoe', () => {
+      .add('/games-hub\/tictactoe', () => {
         Tictactoe.init(this.viewContainer)
+      })
+      .add('/games-hub/', () => {
+        GamesHub.init(this.viewContainer)
       })
       .add('', () => {
         this.viewContainer.innerHTML = '404'
