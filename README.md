@@ -1,12 +1,13 @@
 # Couscous Game Hub
 
-A game hub centre where I'll be adding some games and random stuff as a personal fun project. Made for practice, fun and showcasing
+A game hub centre where I'll be adding some games and random stuff as a personal fun project. Made for practice, fun and showcasing.
 
 - [Couscous Game Hub](#couscous-game-hub)
   - [Dependencies](#dependencies)
   - [Installation and Usage](#installation-and-usage)
   - [Start Dev Server](#start-dev-server)
   - [Build Production Version](#build-production-version)
+    - [Branching Strategy](#branching-strategy)
     - [Features](#features)
     - [Project Structure](#project-structure)
     - [SCSS Folder Structure](#scss-folder-structure)
@@ -15,8 +16,8 @@ A game hub centre where I'll be adding some games and random stuff as a personal
 
 ## Dependencies
 
-You will need to have **Node.js** and **Yarn** installed in your local machine/development environment.
-If you'd **rather use Node's NPM** for some weird reason, don't worry.. you can do that, just **follow these simple steps**:
+You will need to have **Node.js** and **Yarn version 1** (not yet upgraded) installed in your local machine/development environment.
+If you'd **rather use Node's NPM** for some reason (like not having it installed yet or having version 2), don't worry.. you can do that, just **follow these simple steps**:
 
 1. Delete the `yarn.lock` file in the root folder of the project.
 2. Open the **package.json** file and look at the `Scripts` property.
@@ -41,11 +42,17 @@ npm run start
 
 ## Build Production Version
 
-Production build **not tested and not meant to be used yet**. Added a basic initial version for reference but haven't bothered making it for real.
+Production build **not tested and not meant to be used yet**. Added basic one for future reference, didn't even test it.
 
 ```bash
 npm run build
 ```
+
+### Branching Strategy
+
+Branch `main` is protected and should not really be used. Admins will add approved and finished features to it when so they consider.
+**Use `dev` branch** as your base branch, we keep it updated with `main` and it's used as an integration branch. **Always branch off `dev`, and create your Pull Requests** to it. **`dev`! Not `main`**.
+If adding a new Feature, name your branch as so `feature/
 
 ### Features
 
