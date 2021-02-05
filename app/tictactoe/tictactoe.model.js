@@ -9,7 +9,7 @@ class TictactoeModel {
     // TODO: Remove and replace for score array below
     this.score = {
       x: 0,
-      o: 0
+      o: 0,
     }
 
     // TODO: Unused, will extend later
@@ -30,6 +30,7 @@ class TictactoeModel {
 
     this.updateSquareEvent = new Event()
     this.winEvent = new Event()
+    this.drawEvent = new Event()
   }
 
   async load() {
@@ -48,8 +49,16 @@ class TictactoeModel {
     this.board[cell] = currentPlayer
 
     const winner = this.calculateWinner(this.board)
-    this.finished = winner ? true : false
+    const draw = this.calculateDraw()
+    this.finished = winner || draw ? true : false
 
+    if (!this.finished) {
+      this.updateSquareEvent.trigger({ cell, player: currentPlayer })
+      this.xIsNext = !this.xIsNext
+    } else {
+      this.finishCurrentGame(cell, winner, draw)
+    }
+    /*
     if (!this.finished) {
       // TODO: view fired event updates turn so fucks status msg when won, as it still changes next turn player when theres no next turn
       this.updateSquareEvent.trigger({ cell, player: currentPlayer })
@@ -62,6 +71,20 @@ class TictactoeModel {
         this.score.o += 1
       }
       this.winEvent.trigger({ cell, player: currentPlayer, score: this.score })
+    }
+    */
+  }
+
+  finishCurrentGame(cell, winner, draw) {
+    if (draw) {
+      // Fire draw event and update cell
+    } else {
+      if (winner === 'X') {
+        this.score.x += 1
+      } else {
+        this.score.o += 1
+      }
+      this.winEvent.trigger({ cell, player: winner, score: this.score })
     }
   }
 
@@ -92,6 +115,16 @@ class TictactoeModel {
       }
     }
     return null
+  }
+
+  calculateDraw() {
+    const draw = this.board.every(i => i)
+
+    if (draw) {
+      this.drawEvent.trigger()
+    }
+
+    return draw
   }
 
   /*

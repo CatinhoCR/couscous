@@ -6,58 +6,100 @@ class TictactoeView {
     this.content = TictactoeHTML
     this.playEvent = new Event()
     this.squares
+    this.board
     this.next = ''
+    this.status
   }
 
+  /**
+   * Initial DOM Render from HTML file loaded in constructor
+   * Returns a promise bool
+   */
   async render(container) {
+    if (!container || !this.content) {
+      return false
+    }
     container.innerHTML = this.content
-    this.updateTurn({player: this.next})
+    return true
   }
 
-  async afterRender() {
-
+  afterRender(data) {
+    if (data) {
+      this.startGame(data.player)
+    }
+    // this.updateTurn({player: this.next})
   }
 
-  updateTurn(data) {
-    this.next = (data.player !== 'X') ? 'X' : 'O'
-    const status = document.querySelector('.tictactoe__turn span')
-    status.innerHTML = ` ${this.next}! `
-  }
-
-  initClickEvents() {
+  /**
+   *
+   */
+  async startGame(player) {
+    this.status = document.querySelector('.tictactoe__status')
+    this.status.innerHTML = `Hey ${player}, how about starting the game?`
     this.squares = Array.from(document.querySelectorAll('.tictactoe__square'))
-    this.squares.forEach(square => {
+    this.initDOMEvents()
+  }
+
+  /**
+   * Maps any DOM elements needed to trigger actions
+   * Runs after Initial HTML is loaded or throws errors
+   */
+  initDOMEvents() {
+
+    this.board = this.squares.slice()
+    this.board.forEach(square => {
       square.addEventListener('click', e => {
         const btn = parseInt(e.target.dataset.index)
         this.playEvent.trigger(btn)
       })
     })
+    // this.squares.forEach(square => {
+    //   square.addEventListener('click', e => {
+    //     const btn = parseInt(e.target.dataset.index)
+    //     this.playEvent.trigger(btn)
+    //   })
+    // })
+  }
+
+  updateTurn(data) {
+    this.next = (data.player === 'X') ? 'O' : 'X'
+    this.status.innerHTML = `Ok then, it's ${this.next}'s turn now!`
   }
 
   updateSquare(data) {
-    this.squares[data.cell].innerHTML = data.player
+    this.board[data.cell].innerHTML = data.player
     this.updateTurn(data)
   }
 
+  // @todo UpdateWinner, Draw, finish game and restart game improve... tired now
   updateWinner(data) {
-    // TODO: Better handling for status msg... also manage score, rematch.. etc
-    const status = document.querySelector('.tictactoe__turn')
-    const winner = document.querySelector('.tictactoe__turn span')
-    // winner.innerHTML =
-    status.innerHTML = `Wohoo ${data.player}! won this match!`
-    this.squares[data.cell].innerHTML = data.player
+    this.status.innerHTML = `Wohoo ${data.player}! won this match!`
+    this.board[data.cell].innerHTML = data.player
     this.updateScore(data.score)
+    this.finishGame()
+  }
+
+  updateDraw(data) {
+    console.log(data)
   }
 
   updateScore(score) {
-    // TODO: Moves turns history tracker
     const x = document.querySelector('.tictactoe__score-x')
-    const o = document.querySelector('.tictactoe__score-0')
+    const o = document.querySelector('.tictactoe__score-o')
     x.innerHTML = `X: ${score.x}`
     o.innerHTML = `O: ${score.o}`
   }
 
-  startRematch() {
+  finishGame() {
+    const info = document.querySelector('.tictactoe__info')
+    const rematch = document.createElement('button')
+    rematch.classList.add('button', 'button--lg', 'm-b-20')
+    rematch.innerHTML = 'Rematch !'
+    info.appendChild(rematch)
+    rematch.addEventListener('click', () => {
+      // clean board, remove rematch button, keep score
+      this.startGame('X')
+    })
     // TODO:
   }
 

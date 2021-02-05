@@ -50,6 +50,7 @@ npm run build
 
 ### Branching Strategy
 
+**Default base branch is `origin/dev`**!
 Branch `main` is protected and should not really be used. Admins will add approved and finished features to it when so they consider.
 **Use `dev` branch** as your base branch, we keep it updated with `main` and it's used as an integration branch. **Always branch off `dev`, and create your Pull Requests** to it. **`dev`! Not `main`**.
 If adding a new Feature, name your branch as so `feature/
