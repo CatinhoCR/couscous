@@ -13,6 +13,7 @@ class Router {
   }
 
   add = (path, cb) => {
+    path = path ? new RegExp(this.clearSlashes(path)) : ''
     this.routes.push({ path, cb })
     return this
   }
@@ -32,7 +33,11 @@ class Router {
     return this
   }
 
-  clearSlashes = path => path.toString().replace(/\/$/, '').replace(/^\//, '')
+  clearSlashes = path =>
+    path
+      .toString()
+      .replace(/\/$/, '')
+      .replace(/^\//, '')
 
   getFragment = () => {
     let fragment = ''
@@ -53,10 +58,7 @@ class Router {
     if (this.mode === 'history') {
       window.history.pushState(null, null, this.root + this.clearSlashes(path))
     } else {
-      window.location.href = `${window.location.href.replace(
-        /#(.*)$/,
-        ''
-      )}#${path}`
+      window.location.href = `${window.location.href.replace(/#(.*)$/, '')}#${path}`
     }
     return this
   }

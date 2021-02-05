@@ -26,9 +26,12 @@ label {
   @extend .label;
 }
 
-a {
+a,
+button,
+.button,
+.link {
   color: $mid-blue;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
 
   &:hover {
     color: $light-blue;

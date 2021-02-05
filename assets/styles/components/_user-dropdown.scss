@@ -1,0 +1,225 @@
+// TODO: Adapt for select dropdown
+.select-dropdown {
+  border: 1px solid $black;
+  border-radius: rem(22);
+  line-height: 1;
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+
+  &__toggler {
+    @include flex-children(center, space-between);
+    padding: rem(4) rem(10) rem(4) rem(4);
+    width: calc(100% - 2px);
+    text-transform: capitalize;
+    display: inline-flex;
+    font-size: rem(14);
+    line-height: 1;
+    font-weight: $bold-weight;
+    white-space: nowrap;
+    height: 38px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__image {
+    border-radius: 50%;
+    width: rem(32);
+  }
+
+  &__name {
+    flex-grow: 2;
+    text-align: left;
+    margin-right: rem(30);
+  }
+
+  &__icon {
+    transition: transform 0.2s ease;
+
+    .ui-icon {
+      max-width: rem(16) !important;
+      max-height: rem(16) !important;
+      margin: 0 !important;
+
+      &:first-child {
+        transform: translateX(0) !important;
+      }
+
+      path {
+        fill: $black !important;
+      }
+    }
+  }
+
+  &__menu {
+    z-index: z('navigation');
+    border: 1px solid $black;
+    background-color: $white;
+    border-top-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 rem(20) rem(20);
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
+    overflow: hidden;
+    width: calc(100% + 2px);
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    transition: max-height 0.2s ease-in-out;
+  }
+
+  &__item {
+    @extend .text, .text--md, .font-bold;
+    color: $black;
+    display: inline-block;
+    width: calc(100% - 3px);
+    padding: rem(15) rem(28);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      background-color: rgb(229, 229, 229);
+    }
+
+    &:last-child {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      width: calc(100% - 8px);
+      margin: rem(30) rem(4) 0;
+      border-bottom: none;
+      color: $white;
+    }
+  }
+
+  &--expanded {
+    border-bottom-color: transparent;
+    border-radius: rem(20) rem(20) 0 0;
+
+    .select-dropdown {
+      &__icon {
+        transform: rotate(-180deg);
+      }
+
+      &__menu {
+        padding: 0 0 rem(4);
+        max-height: rem(800);
+        opacity: 1;
+      }
+
+      &--hamburger {
+        border-bottom-color: $black;
+        border-radius: rem(20);
+      }
+    }
+  }
+
+  &--lg {
+    .select-dropdown {
+      &__toggler {
+        padding: rem(4) rem(10);
+      }
+    }
+  }
+
+  &--form {
+    flex: 0 0 30%;
+
+    .select-dropdown {
+      &__item {
+        &:last-child {
+          display: inline-block;
+          padding: rem(15) rem(28);
+          width: calc(100% - 2px);
+          border-bottom: none;
+          margin: 0;
+          color: $black;
+        }
+      }
+    }
+  }
+
+  &--transparent {
+    .select-dropdown {
+      &__toggler {
+        width: auto;
+      }
+
+      &__name {
+        margin-right: rem(10);
+      }
+
+      &__icon {
+        display: none;
+      }
+
+      &__menu {
+        border: none;
+        position: static;
+        background-color: transparent;
+      }
+    }
+
+    &.select-dropdown--expanded {
+      border-bottom-color: inherit;
+      border-radius: rem(20);
+    }
+  }
+
+  &--hamburger {
+    &.select-dropdown {
+      &--expanded {
+        border-color: $black;
+        border-radius: rem(20);
+      }
+    }
+
+    .select-dropdown {
+      &__menu {
+        position: relative;
+        border: none;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}
+
+@include break-min($desktop) {
+  .select-dropdown {
+    &--lg {
+      min-width: rem(218);
+    }
+
+    &--form {
+      flex: 0 0 auto;
+    }
+
+    &--transparent {
+      border: none;
+
+      .select-dropdown {
+        &__toggler {
+          font-size: rem(16);
+          padding: 0;
+        }
+
+        &__name {
+          margin-right: rem(10);
+        }
+
+        &__icon {
+          display: inline-flex;
+        }
+
+        &__menu {
+          border: none;
+          position: static;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

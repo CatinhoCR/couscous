@@ -1,0 +1,46 @@
+.menu {
+  padding: 0 rem(10);
+
+  &__name {
+    margin-bottom: rem(20);
+  }
+
+  &__list {
+    padding: 0 rem(80) 0 rem(6);
+
+    &-item {
+      @include flex-children(center, flex-start);
+      padding: rem(16) 0;
+      color: darken($green, 10);
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #aaa;
+
+      &:first-child {
+        border-top: 0;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &:hover {
+        color: $green;
+      }
+
+      &::before {
+        content: '- ';
+        margin-right: rem(6);
+        font-weight: 700;
+        color: inherit;
+      }
+    }
+  }
+
+  &__link {
+    color: darken($green, 10);
+
+    &:hover {
+      color: $green;
+    }
+  }
+}

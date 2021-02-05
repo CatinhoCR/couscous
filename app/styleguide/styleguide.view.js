@@ -1,9 +1,9 @@
-import DashboardHTML from './dashboard.html'
+import StyleguideHTML from './styleguide.html'
 
-class DashboardView {
+class StyleguideView {
   constructor() {
-    this.intro = 'Dashboard'
-    this.content = DashboardHTML
+    this.intro = 'Styleguide Sub Page Container'
+    this.content = StyleguideHTML
   }
 
   render(container) {
@@ -12,7 +12,7 @@ class DashboardView {
   }
 
   updateIntro() {
-    const intro =  document.querySelector('.dashboard__intro')
+    const intro =  document.querySelector('.styleguide__intro')
     const pageTitle = document.createElement('h1')
     pageTitle.classList.add('heading', 'heading--md')
     pageTitle.innerHTML = this.intro
@@ -20,4 +20,4 @@ class DashboardView {
   }
 }
 
-export { DashboardView }
+export { StyleguideView }

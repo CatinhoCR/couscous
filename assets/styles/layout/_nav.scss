@@ -1,32 +1,32 @@
-// TODO: Change class
 .nav {
   &--top {
-    background-color: $flyout-bg;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9998;
-    height: $nav-height-desktop;
-    overflow: hidden;
+    z-index: z('navigation');
   }
 
-  &__bar {
-    width: 100%;
+  &--main {
+    background-color: $white;
+    // $flyout-bg;
+    height: $nav-height-desktop;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+
+  &__inner {
+    @include container;
+    @include flex-children(center, space-between);
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 $padding-side-desktop;
   }
 
   &__brand {
     &-link {
       text-transform: uppercase;
-      color: lighten($green, 10);
+      color: lighten($mid-blue, 10);
 
       &:hover {
-        color: $green;
+        color: $mid-blue;
       }
     }
   }
@@ -55,7 +55,107 @@
 
   &__link {
     display: block;
-    color: lighten($green, 10);
+    color: $deep-teal;
     // padding: rem(18) rem(26);
+
+    &:hover {
+      color: lighten($deep-teal, 20);
+    }
+  }
+
+  &-user {
+    &__avatar {
+      min-width: rem(32);
+      margin-right: rem(10);
+    }
+
+    &__username {
+      margin-right: rem(10);
+      width: rem(80);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.nav-search {
+  z-index: 0;
+  background-color: $white;
+  opacity: 0;
+  width: 100%;
+  max-height: 1px;
+  margin-top: 0;
+  position: absolute;
+  top: 100%;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+
+  &__form {
+    @extend .container;
+    position: relative;
+    padding: rem(31) $padding-side-mobile;
+  }
+
+  &__field {
+    width: 100%;
+    padding: 0 rem(44) 0 0;
+    border: none;
+    font-family: $font-primary;
+    font-weight: 700;
+    font-size: rem(24);
+    line-height: 1.17;
+    letter-spacing: 0.5px;
+    color: $black;
+    vertical-align: middle;
+    text-indent: rem(8);
+
+    &::placeholder {
+      font-family: $font-primary;
+      font-weight: 700;
+      font-size: rem(24);
+      line-height: 1.17;
+      letter-spacing: 0.5px;
+      color: $light-grey;
+    }
+  }
+
+  &__submit {
+    display: none;
+  }
+
+  &__overlay {
+    z-index: -1;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.2s ease;
+    background-color: rgba(0, 0, 0, 0.3);
+    max-height: 1px;
+  }
+
+  &.is-expanded {
+    overflow: visible;
+    z-index: z('search-nav');
+    max-height: 100vh;
+    opacity: 1;
+
+    .icon--default {
+      display: none;
+    }
+
+    .icon--close {
+      display: block;
+    }
+
+    .nav-search__overlay {
+      z-index: z('overlay');
+      max-height: 100vh;
+      height: 100vh;
+      position: absolute;
+      top: 100%;
+      bottom: auto;
+      left: 0;
+      opacity: 1;
+    }
   }
 }

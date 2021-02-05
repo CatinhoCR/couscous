@@ -195,6 +195,12 @@ b {
   font-weight: 400;
   font-stretch: normal;
   font-style: normal;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: lighten($mid-blue, 10);
+    text-decoration: underline;
+  }
 
   &--xl {
     font-size: rem(18);
