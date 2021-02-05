@@ -9,7 +9,7 @@ class TictactoeModel {
     // TODO: Remove and replace for score array below
     this.score = {
       x: 0,
-      o: 0
+      o: 0,
     }
 
     // TODO: Unused, will extend later
@@ -30,6 +30,7 @@ class TictactoeModel {
 
     this.updateSquareEvent = new Event()
     this.winEvent = new Event()
+    this.drawEvent = new Event()
   }
 
   async load() {
@@ -48,23 +49,32 @@ class TictactoeModel {
     this.board[cell] = currentPlayer
 
     const winner = this.calculateWinner(this.board)
-    this.finished = winner ? true : false
+    const draw = this.calculateDraw()
+    this.finished = winner || draw ? true : false
 
     if (!this.finished) {
-      // TODO: view fired event updates turn so fucks status msg when won, as it still changes next turn player when theres no next turn
       this.updateSquareEvent.trigger({ cell, player: currentPlayer })
       this.xIsNext = !this.xIsNext
     } else {
-      // TODO: Improve this counter for scores, too tired now
-      if (currentPlayer === 'X') {
+      this.finishCurrentGame(cell, winner, draw)
+    }
+  }
+
+  finishCurrentGame(cell, winner, draw) {
+    if (draw) {
+      // @todo
+      // Fire draw event and update cell
+    } else {
+      if (winner === 'X') {
         this.score.x += 1
       } else {
         this.score.o += 1
       }
-      this.winEvent.trigger({ cell, player: currentPlayer, score: this.score })
+      this.winEvent.trigger({ cell, player: winner, score: this.score })
     }
   }
 
+  // @todo
   switchPlayer() {
     const currentPlayer = this.xIsNext ? 'X' : 'O'
     return currentPlayer
@@ -94,35 +104,15 @@ class TictactoeModel {
     return null
   }
 
-  /*
-  async GetTictactoeNav() {
-    // const MenuItems = await fetch('./../api/tictactoeNav.json', {
-    const MenuItems = await fetch('./../api/nav.json', {
-      mode: 'no-cors',
-    })
-      .then(response => response.json())
-      .then(result => result)
-      .catch(error => {
-        console.log(error) // eslint-disable-line
-      })
-    return MenuItems
-  }
+  calculateDraw() {
+    const draw = this.board.every(i => i)
 
-  async GetSubmenuItem(submenu) {
-    const SubMenuItems = await fetch('./../api/' + submenu, {
-      mode: 'no-cors',
-    })
-      .then(response => response.json())
-      .then(result => result)
-      .catch(error => {
-        console.log(error) // eslint-disable-line
-      })
-    return SubMenuItems
-  }
-  */
+    if (draw) {
+      this.drawEvent.trigger()
+    }
 
-  // TODO: Get data as user clicks for light loading in stuff
-  // async GetSelectionData() {}
+    return draw
+  }
 }
 
 export { TictactoeModel }
