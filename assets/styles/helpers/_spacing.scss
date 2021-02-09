@@ -1,3 +1,16 @@
+/**
+ * SCSS Loop Generates CSS classes to assign paddings/margins
+ * @usage CSS class to HTML element like so: "p-l-{size}"
+ * @usage Where {size} represents a mapped key-value in $spaceamoounts
+ * @returns CSS Class for either {margin/padding}-{side}-{size}
+ * @example ".p-l-40" adds 40 px padding-left
+ * @example ".m-b-20" adds 20px margin bottom
+ * @see Size and Side values must be mapped from arrays below
+ *
+ * @todo make size dynamic or from mapped theme values in vars?
+ * @todo Ability to add more than 1 side
+*/
+
 $spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100); // Adjust this to include the pixel amounts you need.
 $sides: (top, bottom, left, right); // Leave this variable alone
 

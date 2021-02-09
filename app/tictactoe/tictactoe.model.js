@@ -4,83 +4,79 @@ class TictactoeModel {
   constructor() {
     this.xIsNext = true
     this.board = Array(9).fill(null)
+    this.currentBoard = []
     this.finished = false
+    this.statusTxt = 'Its Your Turn, play!'
 
     // TODO: Remove and replace for score array below
     this.score = {
-      x: 0,
-      o: 0,
+      X: 0,
+      O: 0,
     }
-
-    // TODO: Unused, will extend later
-    // this.score = [
-    //   {
-    //     player: 'X',
-    //     name: '',
-    //     score: 0,
-    //     lastMove: null,
-    //   },
-    //   {
-    //     player: '0',
-    //     name: '',
-    //     score: 0,
-    //     lastMove: null,
-    //   },
-    // ]
 
     this.updateSquareEvent = new Event()
     this.winEvent = new Event()
     this.drawEvent = new Event()
+    this.init()
+  }
+
+  init() {
+    this.currentBoard = this.board.slice()
   }
 
   async load() {
-    // TODO: Get names from form/prompts
     const data = {
-      player: this.xIsNext ? 'X' : 'O',
+      player: this.getPlayer(),
+      text: this.statusTxt,
     }
     return data
   }
 
+  getPlayer() {
+    return this.xIsNext ? 'X' : 'O'
+  }
+
   play(cell) {
-    if (this.board[cell] || this.finished) {
+    if (this.currentBoard[cell] || this.finished) {
       return
     }
-    const currentPlayer = this.xIsNext ? 'X' : 'O'
-    this.board[cell] = currentPlayer
+    const currentPlayer = this.getPlayer()
+    this.currentBoard[cell] = currentPlayer
 
-    const winner = this.calculateWinner(this.board)
+    const winner = this.calculateWinner(this.currentBoard, currentPlayer)
     const draw = this.calculateDraw()
     this.finished = winner || draw ? true : false
 
-    if (!this.finished) {
-      this.updateSquareEvent.trigger({ cell, player: currentPlayer })
+    if (!this.finished || draw) {
       this.xIsNext = !this.xIsNext
-    } else {
-      this.finishCurrentGame(cell, winner, draw)
     }
+    this.updateSquareEvent.trigger({
+      cell,
+      currentPlayer: currentPlayer,
+      text: this.statusTxt,
+      next: this.getPlayer(),
+    })
   }
 
-  finishCurrentGame(cell, winner, draw) {
-    if (draw) {
-      // @todo
-      // Fire draw event and update cell
-    } else {
-      if (winner === 'X') {
-        this.score.x += 1
-      } else {
-        this.score.o += 1
-      }
-      this.winEvent.trigger({ cell, player: winner, score: this.score })
-    }
+  currentBoardWon(currentPlayer) {
+    this.statusTxt = 'WINS! Earns rematch 1st turn'
+    this.score[currentPlayer] += 1
+    this.winEvent.trigger({score: this.score})
   }
 
-  // @todo
-  switchPlayer() {
-    const currentPlayer = this.xIsNext ? 'X' : 'O'
-    return currentPlayer
+  currentBoardDraw() {
+    this.statusTxt = 'Plays next, its a DRAW!'
+    this.drawEvent.trigger()
+
   }
 
-  calculateWinner(squares) {
+  restartGame() {
+    this.statusTxt = 'Its Your Turn, play!'
+    this.currentBoard = this.board.slice()
+    this.finished = false
+  }
+
+  calculateWinner(squares, currentPlayer) {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -91,24 +87,24 @@ class TictactoeModel {
       [0, 4, 8],
       [2, 4, 6],
     ]
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i]
-      if (
-        squares[a] &&
-        squares[a] === squares[b] &&
-        squares[a] === squares[c]
-      ) {
-        return squares[a]
-      }
+    const victory = lines.some(l =>
+      squares[l[0]]
+      && squares[l[0]] === squares[l[1]]
+      && squares[l[1]] === squares[l[2]]
+    )
+
+    if (victory) {
+      this.currentBoardWon(currentPlayer)
     }
-    return null
+
+    return victory
   }
 
   calculateDraw() {
-    const draw = this.board.every(i => i)
+    const draw = this.currentBoard.every(i => i)
 
     if (draw) {
-      this.drawEvent.trigger()
+      this.currentBoardDraw()
     }
 
     return draw

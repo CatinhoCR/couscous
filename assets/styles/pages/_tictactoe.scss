@@ -1,6 +1,43 @@
 .tictactoe {
-  &__turn {
-    margin-bottom: rem(20);
+  &__game {
+    @include flex-children();
+  }
+
+  &__board {
+    width: 100%;
+    max-width: rem(360);
+  }
+
+  &__info {
+    transition: all 0.2s ease;
+  }
+
+  &__status {
+    transform: rotate(0);
+
+    &.updating {
+      transform: rotate(-360deg);
+      transition: all 1s ease;
+    }
+  }
+
+  &__score {
+    &-x,
+    &-o {
+      transform: scale(1);
+      transition: all 0.2s ease-in-out;
+    }
+
+    &.updating {
+      .tictactoe__score {
+        &-x,
+        &-o {
+          transition: all 0.2s ease-in-out;
+          transform: scale(1.1);
+          color: $red;
+        }
+      }
+    }
   }
 
   &__square {
@@ -19,6 +56,14 @@
 
     &:focus {
       outline: none;
+    }
+  }
+}
+
+@include break-min($md) {
+  .tictactoe {
+    &__info {
+      margin-left: rem(30);
     }
   }
 }
