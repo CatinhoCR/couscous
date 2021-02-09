@@ -33,14 +33,14 @@ class TictactoeView {
    * @param {Object} data
    */
   afterRender(data) {
-    if (data.player) {
-      this.initGame(data.player).then(
+    if (data) {
+      this.initGame(data).then(
         this.initPlayClicks()
       )
     }
   }
 
-  async initGame(player) {
+  async initGame(data) {
     this.game = document.querySelector('.tictactoe__board')
     this.squares = Array.from(document.querySelectorAll('.tictactoe__square'))
     this.board = this.squares.slice()
@@ -54,19 +54,16 @@ class TictactoeView {
     this.scoreO = document.querySelector('.tictactoe__score-o')
 
     const playerCss = ['label', 'label--lg', 'text-red', 'd-inline-block', 'font-bold', 'm-r-5']
-    this.statusPlayer = createDOMElement('span', playerCss, player)
+    this.statusPlayer = createDOMElement('span', playerCss, data.player)
 
     const statusCss = ['tictactoe__status', 'heading', 'heading--xs', 'm-b-30', 'text-dark-blue']
-    this.status = createDOMElement('h2', statusCss, 'click any square to begin playing')
+    this.status = createDOMElement('h2', statusCss, data.text)
 
     this.status.prepend(this.statusPlayer)
     this.game.prepend(this.status)
     return true
   }
 
-  /**
-   * Maps any DOM elements needed to trigger actions
-   */
   initPlayClicks() {
     this.board.forEach(square => {
       square.addEventListener('click', e => {
@@ -76,32 +73,28 @@ class TictactoeView {
     })
   }
 
+  // Set Status msg on top of board
+  updateStatusMsg(data) {
+    this.status.innerHTML = data.text
+    this.statusPlayer.innerHTML = data.next
+    this.status.prepend(this.statusPlayer)
+  }
+
   updateSquare(data) {
-    this.board[data.cell].innerHTML = data.player
-    if (!data.finished) {
-      const next = (data.player === 'X') ? 'O' : 'X'
-      this.statusPlayer.innerHTML = next
-      this.status.innerHTML = 'its your turn, play!'
-      this.status.prepend(this.statusPlayer)
-    }
+    this.board[data.cell].innerHTML = data.currentPlayer
+    this.updateStatusMsg(data)
   }
 
   updateWinner(data) {
-    this.status.innerHTML = 'won! Earns 1st turn on rematch'
-    this.statusPlayer.innerHTML = data.player
-    this.status.prepend(this.statusPlayer)
-
     this.updateScore(data.score)
-    this.updateGameOver()
+    this.enableRematch()
   }
 
   updateDraw() {
-    this.statusPlayer.innerHTML = ''
-    this.status.innerHTML = 'Its a DRAW!'
-    this.updateGameOver()
+    this.enableRematch()
   }
 
-  updateGameOver() {
+  enableRematch() {
     this.rematchBtn.classList.remove('hidden')
     this.rematchBtn.addEventListener('click', () => {
       this.startRematch()
@@ -116,7 +109,7 @@ class TictactoeView {
     setTimeout(() => {
       this.score.classList.remove('updating')
       this.status.classList.remove('updating')
-    }, 1000)
+    }, 2000)
   }
 
   startRematch() {

@@ -38,6 +38,10 @@
 
 // Display properties
 .d {
+  &-block {
+    display: block !important;
+  }
+
   &-inline {
     display: inline !important;
   }
