@@ -4,12 +4,13 @@ class TictactoeModel {
   constructor() {
     this.xIsNext = true
     this.board = Array(9).fill(null)
+    this.currentBoard = []
     this.finished = false
 
     // TODO: Remove and replace for score array below
     this.score = {
-      x: 0,
-      o: 0,
+      X: 0,
+      O: 0,
     }
 
     // TODO: Unused, will extend later
@@ -31,6 +32,11 @@ class TictactoeModel {
     this.updateSquareEvent = new Event()
     this.winEvent = new Event()
     this.drawEvent = new Event()
+    this.init()
+  }
+
+  init() {
+    this.currentBoard = this.board.slice()
   }
 
   async load() {
@@ -42,42 +48,39 @@ class TictactoeModel {
   }
 
   play(cell) {
-    if (this.board[cell] || this.finished) {
+    if (this.currentBoard[cell] || this.finished) {
       return
     }
-    const currentPlayer = this.xIsNext ? 'X' : 'O'
-    this.board[cell] = currentPlayer
+    const currentPlayer = this.getCurrentPlayer()
+    this.currentBoard[cell] = currentPlayer
 
-    const winner = this.calculateWinner(this.board)
+    const winner = this.calculateWinner(this.currentBoard)
     const draw = this.calculateDraw()
     this.finished = winner || draw ? true : false
+    this.updateSquareEvent.trigger({ cell, player: currentPlayer, finished: this.finished })
 
-    if (!this.finished) {
-      this.updateSquareEvent.trigger({ cell, player: currentPlayer })
+    if (winner) {
+      this.currentBoardWon(currentPlayer)
+    } else {
       this.xIsNext = !this.xIsNext
-    } else {
-      this.finishCurrentGame(cell, winner, draw)
-    }
-  }
-
-  finishCurrentGame(cell, winner, draw) {
-    if (draw) {
-      // @todo
-      // Fire draw event and update cell
-    } else {
-      if (winner === 'X') {
-        this.score.x += 1
-      } else {
-        this.score.o += 1
+      if (draw) {
+        this.drawEvent.trigger()
       }
-      this.winEvent.trigger({ cell, player: winner, score: this.score })
     }
   }
 
-  // @todo
-  switchPlayer() {
-    const currentPlayer = this.xIsNext ? 'X' : 'O'
-    return currentPlayer
+  currentBoardWon(currentPlayer) {
+    this.score[currentPlayer] += 1
+    this.winEvent.trigger({player: currentPlayer, score: this.score})
+  }
+
+  restartGame() {
+    this.currentBoard = this.board.slice()
+    this.finished = false
+  }
+
+  getCurrentPlayer() {
+    return this.xIsNext ? 'X' : 'O'
   }
 
   calculateWinner(squares) {
@@ -98,21 +101,52 @@ class TictactoeModel {
         squares[a] === squares[b] &&
         squares[a] === squares[c]
       ) {
-        return squares[a]
+        // this.updateWinEvent()
+        // return squares[a]
+        return true
       }
     }
-    return null
+    // return null
+    return false
   }
 
   calculateDraw() {
-    const draw = this.board.every(i => i)
+    const draw = this.currentBoard.every(i => i)
 
-    if (draw) {
-      this.drawEvent.trigger()
-    }
+    // if (draw) {
+    //   this.drawEvent.trigger()
+    // }
 
     return draw
   }
+/*
+  async GetTictactoeNav() {
+    // const MenuItems = await fetch('./../api/tictactoeNav.json', {
+    const MenuItems = await fetch('./../api/nav.json', {
+      mode: 'no-cors',
+    })
+      .then(response => response.json())
+      .then(result => result)
+      .catch(error => {
+        console.log(error) // eslint-disable-line
+      })
+    return MenuItems
+  }
+
+  async GetSubmenuItem(submenu) {
+    const SubMenuItems = await fetch('./../api/' + submenu, {
+      mode: 'no-cors',
+    })
+      .then(response => response.json())
+      .then(result => result)
+      .catch(error => {
+        console.log(error) // eslint-disable-line
+      })
+    return SubMenuItems
+  }
+  */
+  // TODO: Get data as user clicks for light loading in stuff
+  // async GetSelectionData() {}
 }
 
 export { TictactoeModel }

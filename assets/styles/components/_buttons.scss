@@ -1,10 +1,19 @@
+/**
+ * Button BEM classes and all their possible variations
+ * @usage class="button button--{variation}"
+ * @internal Possible variations include "pill", "outline", "lg", "sm", etc
+ * @see To override Colors use the Helpers/_colors.scss flow
+ * @note See sub classes "&--{variation}" below for all options
+ */
+
 .button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   color: $white;
-  background-color: $deep-teal;
-  border: 1px solid $deep-teal;
-  height: rem(38);
-  border-radius: rem(19);
+  background-color: $green;
+  border: 1px solid $green;
+  height: rem(42);
+  border-radius: rem(2);
   padding: rem(8) rem(30);
   text-transform: capitalize;
   display: inline-flex;
@@ -17,14 +26,16 @@
   text-align: center;
   align-items: center;
   white-space: nowrap;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
   flex-shrink: 0;
   justify-content: space-between;
   cursor: pointer;
 
   &:hover {
-    background-color: darken($deep-teal, 10%);
-    border-color: darken($deep-teal, 10%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: darken($green, 10%);
+    border-color: darken($green, 10%);
+    color: $white;
   }
 
   &:focus {
@@ -50,6 +61,30 @@
     border-color: #b7b7b7;
   }
 
+  // Sizing Large
+  &--lg {
+    padding: rem(12) rem(38);
+    border-radius: rem(4);
+    height: rem(48);
+  }
+
+  // Sizing Small
+  &--sm {
+    padding: rem(6) rem(22);
+    border-radius: rem(2);
+    height: rem(36);
+  }
+
+  // Variation to remove box shadow
+  &--no-shadow {
+    box-shadow: 0;
+
+    &:hover {
+      box-shadow: 0;
+    }
+  }
+
+  // Transparent background & border buttons
   &--transparent {
     background-color: transparent;
     color: $white;
@@ -61,7 +96,112 @@
     }
   }
 
-  .fxm-icon {
+  // Pill Shaped Buttons
+  &--pill {
+    border-radius: rem(21);
+
+    &.button {
+      &--lg {
+        border-radius: rem(26);
+      }
+    }
+  }
+
+  // Circle Shaped Buttons
+  &--circle {
+    border-radius: 50%;
+    width: rem(36);
+    height: rem(36);
+    padding: 0;
+    justify-content: center;
+
+    &:focus::before {
+      border-radius: 50%;
+    }
+
+    &.button {
+      &--md {
+        width: 48px;
+        height: 48px;
+
+        .button {
+          &__icon {
+            width: rem(18);
+            height: rem(18);
+            font-size: rem(18);
+          }
+        }
+      }
+
+      &--lg {
+        width: 60px;
+        height: 60px;
+
+        .button {
+          &__icon {
+            width: rem(20);
+            height: rem(20);
+            font-size: rem(20);
+          }
+        }
+      }
+
+      &--xl {
+        width: 80px;
+        height: 80px;
+
+        .button {
+          &__icon {
+            width: rem(24);
+            height: rem(24);
+            font-size: rem(24);
+          }
+        }
+      }
+    }
+
+    &:hover {
+      transform: scale($circle-button-scale);
+    }
+  }
+
+  // Outlined Bordered Buttons
+  &--outline {
+    background-color: transparent;
+    color: $deep-teal;
+
+    &:hover {
+      border-color: $deep-teal;
+      background-color: $deep-teal;
+      color: $white;
+    }
+  }
+
+  // Buttons with Icons and Text (On either side)
+  &--text-icon {
+    .button {
+      &__icon {
+        margin-left: rem(20);
+        transform: translateX(10px);
+
+        &:first-child {
+          margin-left: 0;
+          margin-right: rem(10);
+          transform: translateX(-10px);
+        }
+      }
+    }
+  }
+
+  // Text Element inside Button
+  &__text{
+    color: inherit;
+    font-weight: inherit;
+    text-transform: inherit;
+  }
+
+  // Icon Element inside Button
+  &__icon {
     text-align: center;
     vertical-align: middle;
     max-width: rem(22);
@@ -73,36 +213,6 @@
 
     [class$='__opacity-none'] {
       fill-opacity: 0;
-    }
-  }
-
-  &--lg {
-    padding: rem(13) rem(30);
-    border-radius: rem(24);
-    height: rem(48);
-  }
-
-  &--text-and-icon {
-    .ui-icon {
-      margin-left: rem(20);
-      transform: translateX(10px);
-
-      &:first-child {
-        margin-left: 0;
-        margin-right: rem(10);
-        transform: translateX(-10px);
-      }
-    }
-  }
-
-  &--outline {
-    background-color: transparent;
-    color: $deep-teal;
-
-    &:hover {
-      border-color: $deep-teal;
-      background-color: $deep-teal;
-      color: $white;
     }
   }
 }

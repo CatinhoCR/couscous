@@ -36,6 +36,18 @@
   }
 }
 
+// Display properties
+.d {
+  &-inline {
+    display: inline !important;
+  }
+
+  &-inline-block {
+    display: inline-block !important;
+  }
+}
+
+// Font Weights/Transforms
 .font {
   &-bold {
     font-weight: $bold-weight !important;

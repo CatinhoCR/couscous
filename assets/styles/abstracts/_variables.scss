@@ -91,9 +91,14 @@ $z-layers: (
   'slider-nav': 9993
 );
 
+// Navigation Heights
 $nav-height-mobile: 60px;
 $nav-height-desktop: 80px;
 
+// Spacing Global Values
 $padding-side-mobile: 10px;
 $padding-side-tablet: 20px;
 $padding-side-desktop: 40px;
+
+// Miscellaneous measurements
+$circle-button-scale: 1.08;

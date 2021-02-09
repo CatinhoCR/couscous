@@ -56,6 +56,9 @@ class TictactoeComponent {
       }
       this.model.play(index)
     })
+    this.view.rematchEvent.addListener(() => {
+      this.model.restartGame()
+    })
 
     this.model.updateSquareEvent.addListener(data => {
       this.view.updateSquare(data)
